@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mensagem de Carinho</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
+        url("Fundo.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.container {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    padding: 32px 24px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+h1 {
+    margin: 0 0 10px;
+    font-size: 25px;
+    color: #8b6f61;
+}
+
+.subtitle {
+    margin-bottom: 25px;
+    color: #777;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.label {
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #6f594c;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 25px;
+}
+
+input:focus {
+    border-color: #b89b89;
+}
+
+.choose {
+    font-size: 15px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.btn {
+    width: 100%;
+    border: none;
+    padding: 16px;
+    border-radius: 14px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.noiva {
+    background: #f5e7e8;
+    color: #805b60;
+}
+
+.noivo {
+    background: #e8edf3;
+    color: #596b7e;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Mensagem de carinho</h1>
+
+    <div class="subtitle">
+        Deixe uma mensagem especial para os noivos. 
+    </div>
+
+    <label class="label" for="guestName">
+        Seu nome
+    </label>
+
+    <input
+        type="text"
+        id="guestName"
+        placeholder="Digite o seu nome"
+        autocomplete="name"
+    >
+
+    <div class="choose">
+        Para quem deseja enviar?
+    </div>
+
+    <button class="btn noiva" onclick="sendMessage('noiva')">
+        💍 Enviar para a Noiva
+    </button>
+
+    <button class="btn noivo" onclick="sendMessage('noivo')">
+        🤵🏽‍♂️ Enviar para o Noivo
+    </button>
+
+</div>
+
+<script>
+
+// NÚMEROS DOS NOIVOS
+const numeroNoivo = "244940266735";
+const numeroNoiva = "244942041488";
+
+function sendMessage(destino) {
+
+    const input = document.getElementById("guestName");
+    const nome = input.value.trim();
+
+    // Verifica se o nome foi preenchido
+    if (nome === "") {
+        alert("Por favor, digite o seu nome.");
+        input.focus();
+        return;
+    }
+
+    // Seleciona o número
+    let numero;
+
+    if (destino === "noiva") {
+        numero = numeroNoiva;
+    } else {
+        numero = numeroNoivo;
+    }
+
+    // Mensagem automática
+    const mensagem =
+        `Olá! Sou ${nome}. 💕\n\n` +
+        `Parabéns pelo noivado e muito obrigada pelo convite! ` +
+        `Fiquei muito feliz por fazer parte deste momento tão especial. ` +
+        `Desejo-vos muitas felicidades! 🥰✨`;
+
+    // Link do WhatsApp
+    const link =
+        `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+
+    // Abre o WhatsApp
+    window.location.href = link;
+}
+
+</script>
+
+</body>
+</html>
